@@ -105,6 +105,8 @@ int idl_strcasecmp(const char *s1, const char *s2)
   assert(s2);
 #if _WIN32
   return _stricmp_l(s1, s2, posix_locale());
+#elif __ANDROID_API__ < 24 && ANDROID
+  return strcasecmp(s1, s2);
 #else
   return strcasecmp_l(s1, s2, posix_locale());
 #endif
@@ -116,6 +118,8 @@ int idl_strncasecmp(const char *s1, const char *s2, size_t n)
   assert(s2);
 #if _WIN32
   return _strnicmp_l(s1, s2, n, posix_locale());
+#elif __ANDROID_API__ < 24 && ANDROID
+  return strncasecmp(s1, s2, n);
 #else
   return strncasecmp_l(s1, s2, n, posix_locale());
 #endif

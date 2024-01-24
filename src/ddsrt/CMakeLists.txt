@@ -138,6 +138,17 @@ else()
       "${source_dir}/src/ifaddrs/windows/ifaddrs.c"
       "${source_dir}/src/sockets/windows/socket.c"
       "${source_dir}/src/sockets/windows/gethostname.c")
+  elseif(ANDROID)
+    set(CMAKE_EXTRA_INCLUDE_FILES "netinet/in.h")
+    set(hostname_header "unistd.h")
+    set(inet_header "arpa/inet.h")
+    set(netdb_header "netdb.h")
+    list(APPEND headers
+      "${source_dir}/include/dds/ddsrt/sockets/posix.h")
+    list(APPEND sources
+      "${source_dir}/src/ifaddrs/solaris2.6/ifaddrs.c"
+      "${source_dir}/src/sockets/posix/socket.c"
+      "${source_dir}/src/sockets/posix/gethostname.c")
   else()
     set(CMAKE_EXTRA_INCLUDE_FILES "netinet/in.h")
     set(hostname_header "unistd.h")

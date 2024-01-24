@@ -23,7 +23,7 @@ extern const int *const os_supp_afs;
 
 #include <sys/socket.h>
 #include <sys/ioctl.h>
-#include <sys/sockio.h>
+// #include <sys/sockio.h>
 #include <stdlib.h>
 
 dds_return_t
